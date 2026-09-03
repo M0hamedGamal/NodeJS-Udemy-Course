@@ -4,7 +4,6 @@ const cors = require('cors');
 
 const adminRoutes = require('./routes/adminRoutes')
 const shopRoutes = require('./routes/shopRoutes')
-const notFoundRoutes = require('./routes/notFoundRoutes')
 
 const app = express()
 
@@ -18,6 +17,5 @@ app.use(
 
 app.use('/admin', adminRoutes)
 app.use(shopRoutes)
-app.use(notFoundRoutes)
 
 app.listen(8000)

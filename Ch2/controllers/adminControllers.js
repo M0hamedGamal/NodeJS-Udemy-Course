@@ -1,11 +1,5 @@
 const Product = require('../models/Product');
 
-const getProducts = (req, res, next) => {
-    Product.fetchAll((products) => {
-        res.status(200).send({products})
-    })
-}
-
 const getProduct = (req, res, next) => {
     const product = req.body.product
     res.status(200).send({product})
@@ -20,7 +14,6 @@ const addProduct = (req, res, next) => {
 }
 
 module.exports = {
-    getProducts,
     getProduct,
     addProduct
 }

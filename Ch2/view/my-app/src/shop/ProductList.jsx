@@ -7,7 +7,7 @@ const ProductList = (props) => {
     useEffect(() => {
         const getShop = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/admin/get-products');
+                const response = await axios.get('http://localhost:8000/products');
 
                 setProducts(response.data.products)
             } catch (e) {
