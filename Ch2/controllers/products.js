@@ -1,8 +1,9 @@
 const Product = require('../models/Product');
 
 const getProducts = (req, res, next) => {
-    const products = Product.fetchAll()
-    res.status(200).send({products})
+    Product.fetchAll((products) => {
+        res.status(200).send({products})
+    })
 }
 
 const getProduct = (req, res, next) => {

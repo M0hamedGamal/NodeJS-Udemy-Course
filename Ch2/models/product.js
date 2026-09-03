@@ -4,27 +4,31 @@ const dirPath = require('../util/path')
 
 const localDBPath = path.join(dirPath, 'data', 'products.json')
 
+const getProductFromLocalFile = async (callback) => {
+    fs.readFile(localDBPath, (err, fileContent) => {
+        if (err) {
+            callback([])
+        } else {
+            callback(JSON.parse(fileContent))
+        }
+    })
+}
+
 module.exports = class Product {
     constructor(product) {
         this.product = product
     }
 
     save() {
-        let products = []
-        fs.readFile(localDBPath, (err, fileContent) => {
-            if (!err) {
-                products = JSON.parse(fileContent)
-            }
+        getProductFromLocalFile((products) => {
             products.push(this.product)
-            console.log(products)
-
             fs.writeFile(localDBPath, JSON.stringify(products), (err) => {
                 console.log(err)
             })
         })
     }
 
-    static fetchAll() {
-        return products
+    static fetchAll(callback) {
+        getProductFromLocalFile(callback)
     }
 }
