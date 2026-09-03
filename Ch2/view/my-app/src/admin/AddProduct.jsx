@@ -15,23 +15,26 @@ const AddProduct = (props) => {
                 }
             })
 
-            navigate('/admin/shop')
+            navigate('/shop')
         } catch (e) {
             console.log(e)
         }
     }
     return (
 
-    <div className='flex flex-col items-center justify-center space-y-4'>
-        <input type={"text"} name={'product'} placeholder='Add Product'
-               onChange={(e) => setProduct({title: e.target.value})}
-               className='border-4 border-orange-300 outline-none rounded-lg py-4 px-2 w-80'/>
-        <button onClick={addProduct}
-                className='text-white font-black border-4 border-blue-400 hover:border-blue-300
-                 bg-blue-400 hover:bg-blue-300  rounded-lg px-10 py-4 cursor-pointer w-80'>
-            Add Product
-        </button>
-    </div>
+        <div className='flex items-center justify-center space-y-4  m-8'>
+            <div className='flex flex-col items-center justify-center w-fit'>
+                <input type={"text"} name={'product'} placeholder='Add Product'
+                       onChange={(e) => setProduct({title: e.target.value})}
+                       className='text-2xl border-4 border-blue-500 outline-none rounded-lg py-4 px-2 w-100'/>
+                <button onClick={addProduct}
+                        className='text-3xl font-medium text-white bg-blue-500 rounded-xl shadow-2xl
+                             cursor-pointer mt-4 px-8 py-4 hover:shadow-none hover:bg-blue-400
+                             transition-all duration-300 w-100'>
+                    Add Product
+                </button>
+            </div>
+        </div>
     )
 }
 
