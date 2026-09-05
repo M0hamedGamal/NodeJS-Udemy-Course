@@ -11,7 +11,7 @@ const addProduct = (req, res, next) => {
 const getProductById = (req, res, next) => {
     const id = req.params.id;
 
-    Product.fetchById(id, (product) => {
+    Product.findById(id, (product) => {
         res.status(200).send(product)
     })
 }

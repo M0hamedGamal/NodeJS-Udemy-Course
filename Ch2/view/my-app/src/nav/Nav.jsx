@@ -8,6 +8,11 @@ const Nav = () => {
             )} end>
                 Shop
             </NavLink>
+            <NavLink to="/products" className={({isActive}) => (
+                `text-3xl ${isActive ? 'text-blue-500 font-bold' : 'text-black'} hover:text-blue-400`
+            )} end>
+                Products
+            </NavLink>
             <NavLink to="/cart" className={({isActive}) => (
                 `text-3xl ${isActive ? 'text-blue-500 font-bold' : 'text-black'} hover:text-blue-400`
             )} end>

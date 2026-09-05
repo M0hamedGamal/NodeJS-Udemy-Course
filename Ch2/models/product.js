@@ -28,7 +28,7 @@ module.exports = class Product {
         })
     }
 
-    static fetchById(id, callback) {
+    static findById(id, callback) {
         getProductFromLocalFile((products) => {
             const product = products.find((product) => product.id === id)
             callback(product)

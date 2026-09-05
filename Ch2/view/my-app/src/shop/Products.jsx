@@ -20,8 +20,22 @@ const Products = (props) => {
         getShop()
     }, [])
 
+
+    const handleAddToCart = async (product) => {
+        try {
+            await axios.post(`http://localhost:8000/cart`, {
+                product
+            })
+
+            navigate('/cart')
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
     const navigateToEditProduct = (id) => {
-        navigate(`/admin/edit-product/${id}`);
+        navigate(`/details-product/${id}`);
     }
 
     if (!products.length) {
@@ -44,12 +58,13 @@ const Products = (props) => {
                              cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-blue-400
                              transition-all duration-300 w-full'
                                     onClick={() => navigateToEditProduct(product.id)}>
-                                Edit
+                                Details
                             </button>
-                            <button className='text-3xl font-medium text-white bg-red-500 rounded-xl shadow-2xl
-                             cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-red-400
-                             transition-all duration-300 w-full'>
-                                Delete
+                            <button className='text-3xl font-medium text-white bg-[#008a63]/50 rounded-xl shadow-2xl
+                             cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-[#008a63]
+                             transition-all duration-300 w-full'
+                                    onClick={() => handleAddToCart(product)}>
+                                Add To Cart
                             </button>
                         </div>
                     </div>
