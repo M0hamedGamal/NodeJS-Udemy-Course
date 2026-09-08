@@ -21,7 +21,7 @@ function ProductDetails(props) {
     const handleAddToCart = async (product) => {
         try {
             await axios.post(`http://localhost:8000/cart`, {
-                product
+                productId: product.id
             })
 
             navigate('/cart')
