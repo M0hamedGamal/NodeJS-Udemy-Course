@@ -18,9 +18,10 @@ const getCart = (req, res, next) => {
 }
 
 const postCart = (req, res, next) => {
-    const productId = req.body.productId
-    Product.findById(productId, (product) => {
-        Cart.addProduct(productId, product.price)
+    const prodId = req.body.productId
+    Product.findById(prodId, (product) => {
+        Cart.addProduct(prodId, product.price)
+        res.status(200).send({product})
 
     })
 }
