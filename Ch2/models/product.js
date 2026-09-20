@@ -35,9 +35,13 @@ module.exports = class Product {
         })
     }
 
-
-
     static fetchAll(callback) {
         getProductFromLocalFile(callback)
+    }
+
+    static update(products) {
+        fs.writeFile(localDBPath, JSON.stringify(products), (err) => {
+            console.log(err)
+        })
     }
 }

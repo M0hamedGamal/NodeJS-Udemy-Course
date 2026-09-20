@@ -16,15 +16,31 @@ const getProductById = (req, res, next) => {
     })
 }
 
-const editProductById = (req, res, next) => {
+const editProduct = (req, res, next) => {
     const id = req.params.id;
     console.log(id)
     const product = req.body.product
-    res.status(200).send({product})
+    Product.fetchAll((products) => {
+        const productIndex = products.findIndex(product => product.id === id)
+        
+        const existingProduct = products[productIndex]
+        // console.log(product)
+        
+        if (existingProduct) {
+            const updatedProducts = [...products]
+            const updatedProduct = {...product}
+
+            updatedProducts[productIndex] = updatedProduct
+            
+            console.log(updatedProducts)
+            
+        }
+    })
+    // res.status(200).send({product})
 }
 
 module.exports = {
     addProduct,
     getProductById,
-    editProductById
+    editProduct
 }

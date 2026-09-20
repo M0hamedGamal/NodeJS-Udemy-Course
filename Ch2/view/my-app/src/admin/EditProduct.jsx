@@ -22,13 +22,15 @@ const EditProduct = (props) => {
         }
     }
 
-    const addProduct = async () => {
-        // try {
-        //     const response = await axios.get(`http://localhost:8000/admin/get-product/${productId}`)
-        //     setProduct(response.data)
-        // } catch (e) {
-        //     console.log(e)
-        // }
+    const editProduct = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8000/admin/edit-product/${productId}`, {
+                product
+            })
+            navigate('/shop')
+        } catch (e) {
+            console.log(e)
+        }
     }
     return (
 
@@ -55,7 +57,7 @@ const EditProduct = (props) => {
                           value={product.description}
                           onChange={(e) => setProduct({...product, description: e.target.value})}
                 />
-                <button onClick={addProduct}
+                <button onClick={editProduct}
                         className='text-3xl font-medium text-white bg-blue-500 rounded-xl shadow-2xl
                              cursor-pointer mt-4 px-8 py-4 hover:shadow-none hover:bg-blue-400
                              transition-all duration-300 w-100'>
