@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(
     cors({
-        origin: "http://localhost:5174",
+        origin: "http://localhost:5173",
     })
 );
 
 app.use('/admin', adminRoutes)
 app.use(shopRoutes)
 
-app.listen(8000)
+app.listen(5000)

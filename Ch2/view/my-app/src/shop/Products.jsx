@@ -9,7 +9,7 @@ const Products = (props) => {
     useEffect(() => {
         const getShop = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/products');
+                const response = await axios.get('http://localhost:5000/products');
 
                 setProducts(response.data.products)
             } catch (e) {
@@ -23,7 +23,7 @@ const Products = (props) => {
 
     const handleAddToCart = async (product) => {
         try {
-            await axios.post(`http://localhost:8000/cart`, {
+            await axios.post(`http://localhost:5000/cart`, {
                 product
             })
 

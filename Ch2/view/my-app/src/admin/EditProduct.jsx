@@ -15,7 +15,7 @@ const EditProduct = (props) => {
 
     const getProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/admin/get-product/${productId}`)
+            const response = await axios.get(`http://localhost:5000/admin/get-product/${productId}`)
             setProduct(response.data)
         } catch (e) {
             console.log(e)
@@ -24,7 +24,7 @@ const EditProduct = (props) => {
 
     const editProduct = async () => {
         try {
-            const response = await axios.post(`http://localhost:8000/admin/edit-product/${productId}`, {
+            const response = await axios.post(`http://localhost:5000/admin/edit-product/${productId}`, {
                 product
             })
             navigate('/shop')

@@ -7,7 +7,7 @@ const AddProduct = (props) => {
     const navigate = useNavigate()
     const addProduct = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/admin/add-product', {
+            const response = await axios.post('http://localhost:5000/admin/add-product', {
                 product
             })
 
