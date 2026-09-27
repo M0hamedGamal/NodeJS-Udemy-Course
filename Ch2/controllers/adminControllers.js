@@ -18,25 +18,12 @@ const getProductById = (req, res, next) => {
 
 const editProduct = (req, res, next) => {
     const id = req.params.id;
-    console.log(id)
-    const product = req.body.product
-    Product.fetchAll((products) => {
-        const productIndex = products.findIndex(product => product.id === id)
-        
-        const existingProduct = products[productIndex]
-        // console.log(product)
-        
-        if (existingProduct) {
-            const updatedProducts = [...products]
-            const updatedProduct = {...product}
 
-            updatedProducts[productIndex] = updatedProduct
-            
-            console.log(updatedProducts)
-            
-        }
-    })
-    // res.status(200).send({product})
+    const product = {id, ...req.body.product}
+
+    const updatedProduct = new Product(product)
+    updatedProduct.save()
+    res.status(200).send({product: updatedProduct})
 }
 
 module.exports = {

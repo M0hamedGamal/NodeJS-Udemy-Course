@@ -21,10 +21,25 @@ module.exports = class Product {
 
     save() {
         getProductFromLocalFile((products) => {
-            products.push(this.product)
-            fs.writeFile(localDBPath, JSON.stringify(products), (err) => {
-                console.log(err)
-            })
+            if (this.product.id) {
+                const productIndex = products.findIndex(product => product.id === this.product.id)
+                const updatedProducts = [...products]
+
+                updatedProducts[productIndex] = this.product
+
+                fs.writeFile(localDBPath, JSON.stringify(updatedProducts), (err) => {
+                    console.log(err)
+                })
+            } else {
+                const id = Math.random().toString()
+                const product = {id, ...this.product}
+
+                products.push(product)
+
+                fs.writeFile(localDBPath, JSON.stringify(products), (err) => {
+                    console.log(err)
+                })
+            }
         })
     }
 
@@ -40,8 +55,6 @@ module.exports = class Product {
     }
 
     static update(products) {
-        fs.writeFile(localDBPath, JSON.stringify(products), (err) => {
-            console.log(err)
-        })
+
     }
 }

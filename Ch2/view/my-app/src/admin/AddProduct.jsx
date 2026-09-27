@@ -1,18 +1,14 @@
-import React, {useEffect, useId, useState} from 'react'
+import React, {useState} from 'react'
 import {useNavigate} from "react-router";
 import axios from "axios";
 
 const AddProduct = (props) => {
     const [product, setProduct] = useState({})
     const navigate = useNavigate()
-    const id = useId()
     const addProduct = async () => {
         try {
             const response = await axios.post('http://localhost:8000/admin/add-product', {
-                product: {
-                    id,
-                    ...product,
-                }
+                product
             })
 
             navigate('/shop')
