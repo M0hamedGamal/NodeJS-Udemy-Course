@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const dirPath = require('../util/path')
+const Cart = require('../models/cart')
 
 const localDBPath = path.join(dirPath, 'data', 'products.json')
 
@@ -54,7 +55,19 @@ module.exports = class Product {
         getProductFromLocalFile(callback)
     }
 
-    static update(products) {
+    static delete(id, callback) {
+        getProductFromLocalFile((products) => {
+            const deletedProduct = products.find(product => product.id === id)
+
+            const updatedProducts = products.filter(product => product.id !== id)
+
+            fs.writeFile(localDBPath, JSON.stringify(updatedProducts), (err) => {
+                if (!err) {
+                    Cart.deleteProduct(id, deletedProduct.price)
+                    callback(deletedProduct)
+                }
+            })
+        })
 
     }
 }

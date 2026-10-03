@@ -7,21 +7,32 @@ const AdminProducts = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getShop = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/products');
-
-                setProducts(response.data.products)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-
         getShop()
     }, [])
 
+    const getShop = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/admin/products');
+
+            setProducts(response.data.products)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     const navigateToEditProduct = (id) => {
         navigate(`/admin/edit-product/${id}`);
+    }
+
+    const deleteProduct = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:5000/admin/delete-product/${id}`)
+
+            await getShop()
+        } catch (e) {
+            console.log(e)
+
+        }
     }
 
     if (!products.length) {
@@ -48,7 +59,8 @@ const AdminProducts = (props) => {
                             </button>
                             <button className='text-3xl font-medium text-white bg-red-500 rounded-xl shadow-2xl
                              cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-red-400
-                             transition-all duration-300 w-full'>
+                             transition-all duration-300 w-full'
+                                    onClick={() => deleteProduct(product.id)}>
                                 Delete
                             </button>
                         </div>
