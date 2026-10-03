@@ -4,6 +4,16 @@ const dirPath = require('../util/path')
 
 const localDBPath = path.join(dirPath, 'data', 'cart.json')
 
+const getCartFromLocalFile = async (callback) => {
+    fs.readFile(localDBPath, (err, fileContent) => {
+        if (err) {
+            callback([])
+        } else {
+            callback(JSON.parse(fileContent))
+        }
+    })
+}
+
 module.exports = class Cart {
     static addProduct(id, productPrice) {
         fs.readFile(localDBPath, (err, fileContent) => {
@@ -42,6 +52,10 @@ module.exports = class Cart {
                     return console.error(err)
             })
         })
+    }
+
+    static fetchAll(callback) {
+        getCartFromLocalFile(callback)
     }
 
     static deleteProduct(id, price) {

@@ -15,6 +15,19 @@ const getProductById = (req, res, next) => {
 }
 
 const getCart = (req, res, next) => {
+    Cart.fetchAll(cartProducts => {
+        Product.fetchAll(products => {
+            const addProductsInCart = []
+
+            cartProducts.products.forEach(cartProduct => {
+                products.forEach((product) => {
+                    if (cartProduct.id === product.id)
+                        addProductsInCart.push({product, qty: cartProduct.qty})
+                })
+            })
+            res.status(200).send(addProductsInCart)
+        })
+    })
 }
 
 const postCart = (req, res, next) => {
@@ -22,7 +35,6 @@ const postCart = (req, res, next) => {
     Product.findById(prodId, (product) => {
         Cart.addProduct(prodId, product.price)
         res.status(200).send({product})
-
     })
 }
 
