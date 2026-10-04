@@ -38,6 +38,15 @@ const postCart = (req, res, next) => {
     })
 }
 
+const deleteCartProduct = (req, res, next) => {
+    const id = req.params.id;
+
+    Product.findById(id, (product) => {
+        Cart.deleteProduct(id, product.price)
+        res.status(200).send({message: 'Product was deleted successfully from the cart', product})
+    })
+}
+
 const getOrders = (req, res, next) => {
 }
 
@@ -49,6 +58,7 @@ module.exports = {
     getProductById,
     getCart,
     postCart,
+    deleteCartProduct,
     getOrders,
     getCheckout,
 }
