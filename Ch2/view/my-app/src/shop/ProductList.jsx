@@ -7,18 +7,18 @@ const ProductList = (props) => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        const getShop = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/products');
-
-                setProducts(response.data.products)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-
         getShop()
     }, [])
+
+    const getShop = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/products');
+console.log(response.data)
+            setProducts(response.data.products)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const addToCart = async (productId) => {
         try {
@@ -48,7 +48,9 @@ const ProductList = (props) => {
                         <button className='text-3xl font-medium text-white bg-blue-500 rounded-xl shadow-2xl
                              cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-blue-400
                              transition-all duration-300 w-full'
-                        onClick={() => {addToCart(product.id)}}>
+                                onClick={() => {
+                                    addToCart(product.id)
+                                }}>
                             Add To Cart
                         </button>
                     </div>

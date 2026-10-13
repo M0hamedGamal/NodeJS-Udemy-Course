@@ -11,7 +11,7 @@ function Cart(props) {
     const getCart = async () => {
         try {
             const response = await axios.get('http://localhost:5000/cart');
-
+            console.log(response)
             setCart(response.data)
         } catch (e) {
             console.log(e)
@@ -22,7 +22,7 @@ function Cart(props) {
         const response = await axios.delete(`http://localhost:5000/cart/${id}`)
         console.log(response)
 
-        getCart()
+        await getCart()
     }
 
     if (!cart.length) {

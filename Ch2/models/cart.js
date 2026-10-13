@@ -66,6 +66,10 @@ module.exports = class Cart {
             const updatedCart = {...JSON.parse(fileContent)}
 
             const deletedProduct = updatedCart.products.find(product => product.id === id)
+
+            if (!deletedProduct)
+                return
+
             updatedCart.products = updatedCart.products.filter(product => product.id !== id)
 
             updatedCart.totalPrice -= price * deletedProduct.qty

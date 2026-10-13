@@ -13,7 +13,6 @@ const AdminProducts = (props) => {
     const getShop = async () => {
         try {
             const response = await axios.get('http://localhost:5000/admin/products');
-
             setProducts(response.data.products)
         } catch (e) {
             console.log(e)
@@ -27,6 +26,7 @@ const AdminProducts = (props) => {
     const deleteProduct = async (id) => {
         try {
             const response = await axios.delete(`http://localhost:5000/admin/delete-product/${id}`)
+console.log(response)
 
             await getShop()
         } catch (e) {
