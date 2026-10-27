@@ -26,7 +26,6 @@ const AdminProducts = (props) => {
     const deleteProduct = async (id) => {
         try {
             const response = await axios.delete(`http://localhost:5000/admin/delete-product/${id}`)
-console.log(response)
 
             await getShop()
         } catch (e) {

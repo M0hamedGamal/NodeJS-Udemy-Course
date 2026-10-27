@@ -21,10 +21,10 @@ const Products = (props) => {
     }, [])
 
 
-    const handleAddToCart = async (product) => {
+    const handleAddToCart = async (productId) => {
         try {
             await axios.post(`http://localhost:5000/cart`, {
-                product
+                productId
             })
 
             navigate('/cart')
@@ -63,7 +63,7 @@ const Products = (props) => {
                             <button className='text-3xl font-medium text-white bg-[#008a63]/50 rounded-xl shadow-2xl
                              cursor-pointer mt-8 px-8 py-4 hover:shadow-none hover:bg-[#008a63]
                              transition-all duration-300 w-full'
-                                    onClick={() => handleAddToCart(product)}>
+                                    onClick={() => handleAddToCart(product.id)}>
                                 Add To Cart
                             </button>
                         </div>
