@@ -42,7 +42,7 @@ console.log(response.data)
                         className=' flex flex-col justify-center items-center border-4 border-blue-500 rounded-xl shadow-2xl p-6'
                         key={product.id}>
                         <h1 className='text-4xl font-bold'>{product.title}</h1>
-                        <img src={product.imageUrl} alt="Product" className='w-1/2'/>
+                        <img src={product.imageUrl} alt="Product" className='w-1/2 min-h-110'/>
                         <h2 className='text-2xl text-gray-400 font-bold'>${product.price}</h2>
                         <h2 className='text-2xl text-gray-400 font-bold'>{product.description || '...'}</h2>
                         <button className='text-3xl font-medium text-white bg-blue-500 rounded-xl shadow-2xl
